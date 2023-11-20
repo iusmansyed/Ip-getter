@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>IP Address</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+</head>
+
+<body>
+    <table border=1 cellpadding=5>
+        <tr>
+            <td>IP Address</td>
+            <td id="ip"></td>
+        </tr>
+        <tr>
+            <td>ISP</td>
+            <td id="isp"></td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td id="country"></td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td id="city"></td>
+        </tr>
+        <tr>
+            <td>Google Maps</td>
+            <td>
+                <iframe src="" id="gmaps" width="400" height="400"></iframe>
+            </td>
+        </tr>
+    </table>
+
+    <script type="text/javascript">
+      var ip = document.getElementById("ip");
+      var isp =document.getElementById("isp");
+      var country =document.getElementById("country");
+      var city =document.getElementById("city");
+      var gmaps =document.getElementById("gmaps");
+      fetch('http://ip-api.com/json/?fields=61439')
+            .then((res) => res.json())
+            .then((res) => {
+                ip.textContent = res.query
+                isp.textContent = res.isp
+                city.textContent = res.city
+                country.textContent = res.country
+                gmaps.src = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14475.005108148196!2d${res.lon}!3d${res.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1700261176158!5m2!1sen!2s`
+            })
+      
+
+    </script>
+</body>
+
+</html>
